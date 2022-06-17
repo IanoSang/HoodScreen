@@ -14,12 +14,11 @@ from pathlib import Path
 import os
 import django_heroku
 import dj_database_url
-from decouple import config,Csv
+from decouple import config, Csv
 import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -32,7 +31,6 @@ DEBUG = True
 SECRET_KEY = config('SECRET_KEY')
 MODE = config("MODE", default="dev")
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 
 # Application definition
 
@@ -48,7 +46,7 @@ INSTALLED_APPS = [
     'app.apps.AppConfig',
     'crispy_forms',
     'cloudinary',
-    'rest_framework',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -83,7 +81,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'HoodScreen.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -107,7 +104,6 @@ cloudinary.config(
     api_secret=config("CLOUD_API_SECRET"),
 )
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -126,7 +122,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -137,7 +132,6 @@ TIME_ZONE = 'Africa/Nairobi'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
