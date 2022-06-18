@@ -1,10 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
+{% load bootstrap5 %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>HoodScreen</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      {% if title %}
+      <title>HoodScreen - {{title}}</title>
+      {% else %}
+        <title> HoodScreen </title>
+      {% endif %}
+
+      {% block styles %}
+        {% bootstrap_css %}
+      {% endblock %}
 </head>
 <body>
-<h1>Hello {{request.user}}</h1>
+<h2 class="text-center">Hello {{request.user}}</h2>
+
+
+    {% block scripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+     {% bootstrap_javascript %}
+    {% endblock %}
 </body>
 </html>
