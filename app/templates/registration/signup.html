@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+
+        <div class="col-md-4">
+
+            <form action="" method="post" novalidate>
+                <h4>SignUp Here</h4>
+                {% csrf_token %}
+                {{ form|crispy }}
+
+                <button class="btn btn-sm btn-info">Sign Up</button>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
