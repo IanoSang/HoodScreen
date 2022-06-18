@@ -1,5 +1,6 @@
 <!doctype html>
 {% load bootstrap5 %}
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,15 +16,59 @@
 
       {% block styles %}
         {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
       {% endblock %}
+
+
 </head>
 <body>
-<h2 class="text-center">Hello {{request.user}}</h2>
-    {% block content %}
-    {% endblock %}
+<div class="btn btnToggle">
+         <span class="fas fa-bars"></span>
+      </div>
+      <nav class="sidebar">
+         <div class="text">
+            Hood Screen
+         </div>
+         <ul class="main_side">
+            <li class="active"><a href="#">Dashboard</a></li>
+            <li>
+               <a href="#" id="1">Pages
+               <span class="fas fa-caret-down"></span>
+               </a>
+               <ul class="item-show-1">
+                  <li><a href="#">Contact us</a></li>
+                  <li><a href="#">Our Team</a></li>
+               </ul>
+            </li>
+            <li>
+               <a href="#" id="2">Services
+               <span class="fas fa-caret-down"></span>
+               </a>
+               <ul class="item-show-2">
+                  <li><a href="#">App Design</a></li>
+                  <li><a href="#">Web Design</a></li>
+               </ul>
+            </li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Message</a></li>
+            <li><a href="#">Bookmark</a></li>
+            <li><a href="#">Files</a></li>
+         </ul>
+      </nav>
+      <div class="content">
+         {% block content %}
+
+          {% endblock %}
+
+      </div>
+
     {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="{% static 'js/main.js' %}"></script>
      {% bootstrap_javascript %}
+
+
     {% endblock %}
 </body>
 </html>
