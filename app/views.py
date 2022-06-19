@@ -3,9 +3,11 @@ from .forms import *
 from django.contrib.auth import login, authenticate
 from .models import *
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='login')
 def index(request):
     return render(request, 'hood/index.html')
 
@@ -120,3 +122,18 @@ def leave_hood(request, id):
     request.user.profile.save()
     return redirect('hood')
 
+
+def search_business(request):
+    if request.method == 'GET':
+        name = request.GET.get("title")
+        results = Business.objects.filter(name__icontains=name).all()
+        print(results)
+        message = f'name'
+        context = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'hood/results.html', context)
+    else:
+        message = "You haven't searched for any Business in the hood"
+    return render(request, "hood/results.html")
