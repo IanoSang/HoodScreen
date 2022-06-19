@@ -31,14 +31,14 @@
             Hood Screen
          </div>
          <ul class="main_side">
-            <li class="active"><a href="#">Dashboard</a></li>
+            <li class="active"><a href="{% url 'profile' user.username %}">Dashboard</a></li>
             <li>
-               <a href="#" id="1">Pages
+               <a href="#" id="1">Neighborhoods
                <span class="fas fa-caret-down"></span>
                </a>
                <ul class="item-show-1">
-                  <li><a href="#">Contact us</a></li>
-                  <li><a href="#">Our Team</a></li>
+                  <li><a href="{% url 'hood' %}">All Hoods</a></li>
+                  <li><a href="{% url 'new-hood' %}">New Hood</a></li>
                </ul>
             </li>
             <li>
