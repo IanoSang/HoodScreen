@@ -97,3 +97,10 @@ def create_post(request, hood_id):
     else:
         form = PostForm()
     return render(request, 'hood/post.html', {'form': form})
+
+
+def hood_members(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    members = Profile.objects.filter(neighbourhood=hood)
+    return render(request, 'hood/members.html', {'members': members})
+
