@@ -23,12 +23,129 @@
 
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynav"
+                aria-controls="mynav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <div class="d-flex">
+                    <div class="d-flex align-items-center logo bg-purple">
+                        <div class="fab fa-joomla h2 text-white"></div>
+                    </div>
+                    <div class="ms-3 d-flex flex-column">
+                        <div class="h4">HoodScreen</div>
+                        <div class="fs-6">My Neighborhood Website</div>
+                    </div>
+                </div>
+            </a>
+            <div class="collapse navbar-collapse" id="mynav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'hoods' %}">All Hoods <span
+                                class="fas fa-th-large px-1"></span></a>
+                    </li>
 
-         {% block content %}
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' user.username %}"> <img class="rounded-circle nav-img"src="{{ user.profile.profile_pic.url }}" alt="">
+                                Hello {{request.user.username}}
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-          {% endblock %}
+    <div class="container mt-4">
+        {% if user.is_authenticated %}
+        <div class="row">
+            <div class="col-lg-3 my-lg-0 my-md-1">
+                <div id="sidebar" class="bg-purple">
+                    <div class="h4 text-white">Account</div>
+                    <ul>
+                         {% if user.profile.neighbourhood %}
+                        <li class="active">
+                            <a href="{% url 'single-hood' user.profile.neighbourhood.id %}" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-home pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">{{user.profile.neighbourhood.name}}</div>
+                                    <div class="link-desc">View your hoods Posts, Business and Members Here</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'members' user.profile.neighbourhood.id %}" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-users pt-2 me-3"></div>
 
+                                <div class="d-flex flex-column">
+                                    <div class="link">{{user.profile.neighbourhood.name}} Members</div>
+                                    <div class="link-desc">View your hoods Posts, Business and Members Here</div>
+                                </div>
+                            </a>
+                        </li>
+                             {% else %}
+                        <li class="active">
+                            <a href="" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-box pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">No Hood Yet</div>
+                                    <div class="link-desc">Join a hood & be able to see a Posts, Businesses and members in your hood</div>
+                                </div>
+                            </a>
+                        </li>
+                        {% endif %}
 
+                        <li>
+                            <a href="{% url 'profile' user.username %}" class="text-decoration-none d-flex align-items-start">
+                                <div class="far fa-user pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">My Profile</div>
+                                    <div class="link-desc">View your profile details & profile picture</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'edit-profile' user.username %}" class="text-decoration-none d-flex align-items-start">
+                                <div class="far  fa-edit pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">Edit Profile</div>
+                                    <div class="link-desc">Change your profile details & password</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'logout' %}" class="text-decoration-none d-flex align-items-start">
+                                <div class="fas fa-tools pt-2 me-3"></div>
+                                <div class="d-flex flex-column">
+                                    <div class="link">Logout</div>
+                                    <div class="link-desc">Sign Out of the Page</div>
+                                </div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+            {% endif %}
+            <div class="col-lg-9 my-lg-0 my-1">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </div>
+
+    </div>
     {% block scripts %}
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
                 integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
