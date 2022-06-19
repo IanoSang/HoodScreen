@@ -5,7 +5,7 @@ body {
   padding: 0;
   user-select: none;
   box-sizing: border-box;
-  font-family: 'Muli', sans-serif;
+  font-family: 'Inter:wght@100', sans-serif;
   color: rgba(0, 0, 0, 0.8);
   font-weight: 400;
   line-height: 1.58;
@@ -20,6 +20,173 @@ h1 {
   font-size: 38px;
   line-height: 1.15;
   letter-spacing: -.02em;
-  color: white;
   -webkit-font-smoothing: antialiased;
+}
+nav {
+    min-height: 70px;
+}
+.nav-img{
+    height: 35px;
+    width: 35px;
+}
+nav .navbar-brand .logo {
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+nav .navbar-brand .logo .h2 {
+    margin: 0;
+}
+
+nav .navbar-brand .h4 {
+    margin-bottom: 0px;
+    font-weight: 900;
+}
+
+nav .navbar-brand .fs-6 {
+    font-size: 0.88rem !important;
+}
+
+nav ul li {
+    padding: 0 20px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #333;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #4e2296;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: #451296;
+}
+
+
+#sidebar {
+    padding: 15px 0px 15px 0px;
+    border-radius: 10px;
+}
+
+#sidebar .h4 {
+    font-weight: 500;
+    padding-left: 15px;
+}
+
+#sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0rem;
+}
+
+#sidebar ul li {
+    padding: 10px 0;
+    display: block;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-left: 5px solid transparent;
+}
+
+#sidebar ul li.active {
+    border-left: 5px solid #ff5252;
+    background-color: #44007c;
+}
+
+#sidebar ul li a {
+    display: block;
+}
+
+#sidebar ul li a .fas,
+#sidebar ul li a .far {
+    color: #ddd;
+}
+
+#sidebar ul li a .link {
+    color: #fff;
+    font-weight: 500;
+}
+
+#sidebar ul li a .link-desc {
+    font-size: 0.8rem;
+    color: #ddd;
+}
+
+
+/* Backgrounds */
+.bg-purple {
+    background-color: #55009b;
+}
+
+.bg-light {
+    background-color: #f0ecec !important;
+}
+
+.green {
+    color: #007965 !important;
+}
+
+/* Media Queries */
+@media(max-width: 1199.5px) {
+    nav ul li {
+        padding: 0 10px;
+    }
+}
+
+@media(max-width: 500px) {
+    .order .progressbar-track .progressbar li {
+        font-size: 1rem;
+    }
+
+    .order .progressbar-track .progressbar li::after {
+        font-size: 0.8rem;
+        top: 35px;
+    }
+
+    #tracker {
+        top: 20px;
+    }
+}
+
+@media(max-width: 440px) {
+    #main-content {
+        padding: 20px;
+    }
+
+    .order {
+        padding: 20px;
+    }
+
+    #step-4::after {
+        left: -5px;
+    }
+}
+
+@media(max-width: 395px) {
+    .order .progressbar-track .progressbar li {
+        font-size: 0.8rem;
+    }
+
+    .order .progressbar-track .progressbar li::after {
+        font-size: 0.7rem;
+        top: 35px;
+    }
+
+    #tracker {
+        top: 15px;
+    }
+
+    .order .btn.btn-primary {
+        font-size: 0.85rem;
+    }
+}
+
+@media(max-width: 355px) {
+    #main-content {
+        padding: 15px;
+    }
+
+    .order {
+        padding: 10px;
+    }
 }
