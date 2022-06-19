@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
-@login_required(login_url='login')
 def index(request):
     return render(request, 'hood/index.html')
 
@@ -27,10 +26,12 @@ def signup(request):
     return render(request, 'registration/signup.html', {'form': form})
 
 
+@login_required(login_url='login')
 def profile(request, username):
     return render(request, 'hood/profile.html')
 
 
+@login_required(login_url='login')
 def edit_profile(request, username):
     user = User.objects.get(username=username)
     if request.method == 'POST':
@@ -43,6 +44,7 @@ def edit_profile(request, username):
     return render(request, 'hood/editprofile.html', {'form': form})
 
 
+@login_required(login_url='login')
 def create_hood(request):
     if request.method == 'POST':
         form = NeighbourHoodForm(request.POST, request.FILES)
@@ -50,12 +52,13 @@ def create_hood(request):
             hood = form.save(commit=False)
             hood.admin = request.user.profile
             hood.save()
-            return redirect('hood')
+            return redirect('hoods')
     else:
         form = NeighbourHoodForm()
     return render(request, 'hood/newhood.html', {'form': form})
 
 
+@login_required(login_url='login')
 def hoods(request):
     all_hoods = NeighbourHood.objects.all()
     all_hoods = all_hoods[::-1]
@@ -65,6 +68,7 @@ def hoods(request):
     return render(request, 'hood/all_hoods.html', context)
 
 
+@login_required(login_url='login')
 def single_hood(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
     business = Business.objects.filter(neighbourhood=hood)
@@ -88,6 +92,7 @@ def single_hood(request, hood_id):
     return render(request, 'hood/single_hood.html', context)
 
 
+@login_required(login_url='login')
 def create_post(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
     if request.method == 'POST':
@@ -103,26 +108,30 @@ def create_post(request, hood_id):
     return render(request, 'hood/post.html', {'form': form})
 
 
+@login_required(login_url='login')
 def hood_members(request, hood_id):
     hood = NeighbourHood.objects.get(id=hood_id)
     members = Profile.objects.filter(neighbourhood=hood)
     return render(request, 'hood/members.html', {'members': members})
 
 
+@login_required(login_url='login')
 def join_hood(request, id):
     neighbourhood = get_object_or_404(NeighbourHood, id=id)
     request.user.profile.neighbourhood = neighbourhood
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('hoods')
 
 
+@login_required(login_url='login')
 def leave_hood(request, id):
     hood = get_object_or_404(NeighbourHood, id=id)
     request.user.profile.neighbourhood = None
     request.user.profile.save()
-    return redirect('hood')
+    return redirect('hoods')
 
 
+@login_required(login_url='login')
 def search_business(request):
     if request.method == 'GET':
         name = request.GET.get("title")
