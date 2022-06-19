@@ -5,7 +5,7 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'hood/index.html')
 
 
 def signup(request):
@@ -37,3 +37,25 @@ def edit_profile(request, username):
     else:
         form = UpdateProfileForm(instance=request.user.profile)
     return render(request, 'hood/editprofile.html', {'form': form})
+
+
+def create_hood(request):
+    if request.method == 'POST':
+        form = NeighbourHoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            hood = form.save(commit=False)
+            hood.admin = request.user.profile
+            hood.save()
+            return redirect('hood')
+    else:
+        form = NeighbourHoodForm()
+    return render(request, 'hood/newhood.html', {'form': form})
+
+
+def hoods(request):
+    all_hoods = NeighbourHood.objects.all()
+    all_hoods = all_hoods[::-1]
+    context = {
+        'all_hoods': all_hoods,
+    }
+    return render(request, 'hood/all_hoods.html', context)
