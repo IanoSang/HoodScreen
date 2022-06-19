@@ -12,7 +12,7 @@
   <tbody>
   {% for member in members%}
     <tr>
-      <th scope="row">*</th>
+      <th scope="row"><img class="rounded-circle nav-img"src="{{ member.user.profile.profile_pic.url }}" alt=""></th>
       <td>{{ member.user.username }}</td>
       <td>{{ member.location}}</td>
     </tr>
