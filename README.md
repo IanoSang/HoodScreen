@@ -27,9 +27,9 @@
 * Only view details of a single neighborhood.
   
 ### App Layout
-<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/Rate-It/blob/main/static/images/rate1.png">
-<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/Rate-It/blob/main/static/images/rate2.png">
-<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/Rate-It/blob/main/static/images/rate3.png">
+<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/HoodScreen/blob/main/static/images/hood2.png">
+<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/HoodScreen/blob/main/static/images/hood1.png">
+<img width="1440" alt="Screenshot" src="https://github.com/IanoSang/HoodScreen/blob/main/static/images/hood3.png">
 
 ## SetUp Instruction
 
@@ -62,7 +62,7 @@
 *****
 
 ## Live Link
-Or you can access the web application directly via this [LIVE LINK](https://hoodscreen.herokuapp.com//).
+Or you can access the web application directly via this [LIVE LINK](https://hoodscreen.herokuapp.com/).
 
 *****
 
