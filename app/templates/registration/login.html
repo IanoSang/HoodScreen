@@ -8,12 +8,12 @@
         <div class="col-md-4">
 
             <form action="" method="post" novalidate>
-                <h4>Login Here</h4>
+                <h4 class="text-center">Login Here</h4>
                 {% csrf_token %}
                 {{ form|crispy }}
-
-                <button class="btn btn-sm btn-info mt-2">Login</button>
-
+                <div class="text-center">
+                    <button class="btn btn-sm btn-info mt-2">Login</button>
+                </div>
             </form>
         </div>
 
