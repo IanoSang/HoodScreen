@@ -45,6 +45,16 @@ def edit_profile(request, username):
 
 
 @login_required(login_url='login')
+def hoods(request):
+    all_hoods = NeighbourHood.objects.all()
+    all_hoods = all_hoods[::-1]
+    context = {
+        'all_hoods': all_hoods,
+    }
+    return render(request, 'hood/all_hoods.html', context)
+
+
+@login_required(login_url='login')
 def create_hood(request):
     if request.method == 'POST':
         form = NeighbourHoodForm(request.POST, request.FILES)
@@ -56,16 +66,6 @@ def create_hood(request):
     else:
         form = NeighbourHoodForm()
     return render(request, 'hood/newhood.html', {'form': form})
-
-
-@login_required(login_url='login')
-def hoods(request):
-    all_hoods = NeighbourHood.objects.all()
-    all_hoods = all_hoods[::-1]
-    context = {
-        'all_hoods': all_hoods,
-    }
-    return render(request, 'hood/all_hoods.html', context)
 
 
 @login_required(login_url='login')
