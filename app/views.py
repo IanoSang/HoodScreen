@@ -47,7 +47,6 @@ def edit_profile(request, username):
 @login_required(login_url='login')
 def hoods(request):
     all_hoods = NeighbourHood.objects.all()
-    all_hoods = all_hoods[::-1]
     context = {
         'all_hoods': all_hoods,
     }
