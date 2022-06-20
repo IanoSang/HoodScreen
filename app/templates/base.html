@@ -23,7 +23,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynav"
                 aria-controls="mynav" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,9 +66,9 @@
         </div>
     </nav>
 
-    <div class="container mt-4">
+    <div class="container mt-5">
         {% if user.is_authenticated %}
-        <div class="row">
+        <div class="row pt-5">
             <div class="col-lg-3 my-lg-0 my-md-1">
                 <div id="sidebar" class="bg-purple">
                     <div class="h4 text-white">Account</div>
@@ -138,7 +138,7 @@
                 </div>
             </div>
             {% endif %}
-            <div class="col-lg-9 my-lg-0 my-1">
+            <div class="col-lg-9 my-lg-0 pt-4 pb-4">
                 {% block content %}
 
                 {% endblock %}
