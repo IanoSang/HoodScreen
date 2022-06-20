@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 poster">
+            <h3 class="text-center tt ">New Business</h3>
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-sm btn-info "> Add</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+</div>
+{% endblock %}

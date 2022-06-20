@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import SignupForm, UpdateProfileForm, NeighbourHoodForm,BusinessForm, PostForm
+from .forms import SignupForm, UpdateProfileForm, NeighbourHoodForm, BusinessForm, PostForm
 from django.contrib.auth import login, authenticate
 from .models import *
 from django.contrib.auth.models import User
@@ -106,6 +106,22 @@ def create_post(request, hood_id):
     else:
         form = PostForm()
     return render(request, 'hood/post.html', {'form': form})
+
+
+@login_required(login_url='login')
+def addBusiness(request, hood_id):
+    hood = NeighbourHood.objects.get(id=hood_id)
+    if request.method == 'POST':
+        form = BusinessForm(request.POST)
+        if form.is_valid():
+            b_form = form.save(commit=False)
+            b_form.neighbourhood = hood
+            b_form.user = request.user.profile
+            b_form.save()
+            return redirect('single-hood', hood.id)
+    else:
+        form = BusinessForm()
+    return render(request, 'hood/addBusiness.html', {'form': form})
 
 
 @login_required(login_url='login')
